@@ -226,7 +226,7 @@ This project is developed for educational purposes.
 
 ## 👤 Author
 
-**Anisha Patel**
+**Malti Solanki**
 B.Tech CSE (2025-26)
 Jawaharlal Institute of Technology, Borawan
 
