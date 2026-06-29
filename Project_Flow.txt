@@ -1,0 +1,268 @@
+1. Core System Design
+👥 Roles
+
+ADMIN
+
+Create Branch
+
+Create Semester
+
+Create Subject
+
+Upload Notes / PYQs
+
+Delete resources
+
+STUDENT
+
+View branches
+
+View semesters
+
+View subjects
+
+Download PDFs
+
+
+------------------------------------
+
+2. Database Design (Important)
+
+Here’s the proper entity relationship structure:
+
+📌 Branch
+
+id
+
+name (e.g., CSE, ECE)
+
+📌 Semester
+
+id
+
+number (1–8)
+
+branch_id (Many-to-One)
+
+📌 Subject
+
+id
+
+name
+
+semester_id (Many-to-One)
+
+📌 Resource
+
+id
+
+title
+
+type (NOTES / PYQ)
+
+fileUrl (or filePath)
+
+subject_id (Many-to-One)
+
+uploadDate
+
+📌 User
+
+id
+
+name
+
+email
+
+password
+
+role (ADMIN / STUDENT)
+
+-------------------------------------
+User (ADMIN / STUDENT)
+
+Branch
+   └── Semester
+          └── Subject
+                └── Resource
+
+1️⃣ Branch ↔ Semester
+Relationship Type:
+
+One-to-Many
+
+Meaning:
+
+One Branch has many Semesters
+
+One Semester belongs to one Branch
+
+Real Example:
+
+CSE → Semester 1, 2, 3, 4, 5, 6, 7, 8
+ECE → Semester 1, 2, 3...
+In Database:
+semester table has a branch_id foreign key.
+
+2️⃣ Semester ↔ Subject
+Relationship Type:
+
+One-to-Many
+
+Meaning:
+
+One Semester has many Subjects
+
+One Subject belongs to one Semester
+
+Example:
+
+Semester 3 (CSE) →
+Data Structures
+Digital Logic
+Discrete Mathematics
+
+In Database:
+subject table has semester_id foreign key.
+
+
+3️⃣ Subject ↔ Resource
+Relationship Type:
+
+One-to-Many
+
+Meaning:
+
+One Subject can have many resources
+
+One Resource belongs to one subject
+
+Example:
+
+Data Structures →
+Unit 1 Notes
+Unit 2 Notes
+2021 PYQ
+2022 PYQ
+
+In Database:
+resource table has subject_id foreign key.
+
+
+4️⃣ User ↔ Resource
+Relationship Type:
+
+One-to-Many
+
+Meaning:
+
+One User (Admin) can upload many resources
+
+One Resource is uploaded by one user
+
+Example:
+Admin1 uploads:
+10 Notes
+5 PYQs
+
+In Database:
+resource table has uploaded_by foreign key.
+
+
+#The project follows a hierarchical academic structure. A Branch contains multiple Semesters, each Semester contains multiple Subjects, and each Subject contains multiple Resources like Notes and PYQs. Additionally, Resources are uploaded by Admin users, creating a one-to-many relationship between User and Resource. All relationships are implemented using One-to-Many and Many-to-One associations in JPA.
+-------------------------------------
+
+
+Phase 1:
+
+Setup project
+
+Configure DB
+
+Create Entities
+
+Setup repositories
+
+Phase 2:
+
+Implement authentication (JWT)
+
+Phase 3:
+
+Implement Branch → Semester → Subject APIs
+
+Phase 4:
+
+Implement file upload
+
+Phase 5:
+
+Secure endpoints
+
+Phase 6:
+
+Add validation + exception handling
+
+----------------------------------------------------
+
+
+service/
+│
+├── BranchService.java
+├── SemesterService.java
+├── SubjectService.java
+├── ResourceService.java
+├── UserService.java
+│
+└── impl/
+    ├── BranchServiceImpl.java
+    ├── SemesterServiceImpl.java
+    ├── SubjectServiceImpl.java
+    ├── ResourceServiceImpl.java
+    └── UserServiceImpl.java
+
+-------------------------------------------------------
+
+
+1️⃣ API Structure
+/api/branches
+/api/semesters
+/api/subjects
+
+2️⃣ BranchController
+Current APIs:
+Method	Endpoint	Purpose
+POST	/api/branches	Create branch
+GET	/api/branches	Get all branches
+GET	/api/branches/{id}	Get branch by id
+PUT	/api/branches/{id}	Update branch
+DELETE	/api/branches/{id}	Delete branch
+
+
+3️⃣ SemesterController
+Current APIs:
+Method	Endpoint	Purpose
+POST	/api/semesters	Create semester
+GET	/api/semesters	Get all semesters
+GET	/api/semesters/{id}	Get semester
+PUT	/api/semesters/{id}	Update semester
+DELETE	/api/semesters/{id}	Delete semester
+
+4️⃣ SubjectController 
+Current APIs:
+Method	Endpoint	Purpose
+POST	/api/subjects	Create subject
+GET	/api/subjects	Get all subjects
+GET	/api/subjects/{id}	Get subject
+PUT	/api/subjects/{id}	Update subject
+DELETE	/api/subjects/{id}	Delete subject
+
+
+# Resource Controller
+Method	Endpoint	Purpose
+POST	/api/resources/upload	Upload PDF
+GET	/api/resources	Get all resources
+GET	/api/resources/{id}	Get resource by id
+GET	/api/resources/subject/{subjectId}	Get resources by subject
+PUT	/api/resources/update/{id}	Update resource
+DELETE	/api/resources/{id}	Delete resource

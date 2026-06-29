@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Learning Resources</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: linear-gradient(to right, #eef2f3, #dfe9f3);
+            margin: 0;
+            padding: 0;
+        }
+
+        .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 10px 18px;
+    margin-bottom: 20px;
+
+    background:#2c3e50;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+}
+
+.back-btn:active {
+    transform: scale(0.95);
+}
+
+        /* HEADER */
+        .header {
+            background: #2c3e50;
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 0 0 20px 20px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-weight: 600;
+        }
+
+        .header p {
+            margin-top: 10px;
+            opacity: 0.9;
+        }
+
+        /* CONTAINER */
+        .container {
+            padding: 20px;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        /* SECTION TITLE */
+        .section-title {
+            margin-top: 25px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        /* CARD */
+        .card {
+            background: white;
+            padding: 15px 20px;
+            margin: 12px 0;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+        }
+
+        .card a {
+            color: #4a90e2;
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .card a:hover {
+            text-decoration: underline;
+        }
+
+        /* ICON STYLE */
+        .icon {
+            margin-right: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+    <h1>Learning Resources</h1>
+    <p>Explore curated YouTube channels and websites to boost your learning.</p>
+</div>
+
+<!-- CONTENT -->
+<div class="container">
+
+    <button class="back-btn" onclick="goBack()">Back to dashboard</button>
+
+    <h3 class="section-title">YouTube Channels</h3>
+    <div id="youtubeResources"></div>
+
+    <h3 class="section-title">Websites</h3>
+    <div id="websiteResources"></div>
+
+</div>
+
+<script src="js/yt-resource.js"></script>
+
+</body>
+</html>

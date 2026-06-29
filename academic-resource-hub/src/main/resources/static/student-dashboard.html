@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/student.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Datatype:wght@100..900&family=Martel+Sans:wght@200;300;400;600;700;800;900&family=Oswald:wght@200..700&family=Outfit:wght@100..900&display=swap');
+
+        /* Explicit helper state definitions */
+        .d-none { display: none !important; }
+    </style>
+
+</head>
+<body>
+
+<div class="dashboard">
+
+    <div class="sidebar">
+        <h2>📘 Student Panel</h2>
+
+        <ul>
+            <li class="active">🏠 Dashboard</li>
+            <li onclick="goToProfile()">👤 Profile</li>
+            <li onclick="loadAllByType('NOTES')">📚 Notes</li>
+            <li onclick="loadAllByType('SYLLABUS')">📄 Syllabus</li>
+            <li onclick="loadAllByType('BOOK')">📘 Books</li>
+            <li onclick="loadAllByType('PYQ')">📝 PYQs</li>
+            <li onclick="goToYtResource()">📚 Additional Resources</li>
+            <li onclick="logout()" style="margin-top: 30px; color: #ff6b6b;">
+                🚪 Logout
+            </li>
+        </ul>
+    </div>
+
+    <div class="main">
+
+        <div class="topbar">
+            <input type="text" placeholder="Search subjects..." />
+            <span class="user">🔔 Student</span>
+        </div>
+
+        <h2>Welcome, Student 👋</h2>
+        <p class="dashboard-desc">
+            Access all your academic resources in one place. Easily explore subject-wise resources including notes, PYQs, books, and syllabus.
+        </p> <br>
+
+        <div class="cards">
+            <div class="card">📚 Notes</div>
+            <div class="card">📄 Syllabus</div>
+            <div class="card">📘 Books</div>
+            <div class="card">📝 PYQs</div>
+        </div>
+
+        <div class="section">
+            <h3>📂 Resources</h3> <br>
+            <div id="resourceList"></div>
+        </div>
+
+        <div class="section">
+            <h3>📌 Select Branch</h3>
+            <div id="branchList"></div>
+        </div>
+
+        <div class="section">
+            <h3>📌 Select Semester</h3>
+            <div id="semesterList"></div>
+        </div>
+
+        <div class="section">
+            <h3>📌 Select Subject</h3>
+            <div class="subjects" id="subjectList"></div>
+        </div>
+
+        <div class="section">
+            <h3>📌 Select Type</h3>
+            <div class="types">
+                <button onclick="loadResourcesByType('NOTES')">📚 Notes</button>
+                <button onclick="loadResourcesByType('PYQ')">📝 PYQs</button>
+                <button onclick="loadResourcesByType('BOOK')">📘 Books</button>
+                <button onclick="loadResourcesByType('SYLLABUS')">📄 Syllabus</button>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<button id="aiChatBtn" style="position: fixed; bottom: 35px; right: 35px; width: 65px; height: 65px; z-index: 999999 !important; font-size: 28px; background-color: #2b3e50; border: 2px solid #ffffff; color: white; border-radius: 50%; cursor: pointer; box-shadow: 0px 4px 15px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; transition: transform 0.2s; pointer-events: auto !important;">
+    🤖
+</button>
+
+<div id="aiChatWindow" class="d-none" style="position: fixed; bottom: 115px; right: 35px; width: 370px; height: 490px; z-index: 999999 !important; border-radius: 16px; display: flex; flex-direction: column; font-family: 'Inter', sans-serif; background-color: #ffffff; box-shadow: 0px 10px 30px rgba(0,0,0,0.25); border: 1px solid #e0e0e0;">
+
+    <div style="background-color: #2b3e50; border-top-left-radius: 16px; border-top-right-radius: 16px; padding: 15px; color: white; display: flex; justify-content: space-between; align-items: center;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+            <span style="font-size: 20px;">🧠</span>
+            <h4 style="margin: 0; font-size: 16px; font-weight: 600; letter-spacing: 0.5px;">Academic AI Assistant</h4>
+        </div>
+        <button id="closeChat" style="background: none; border: none; color: white; font-size: 20px; cursor: pointer; line-height: 1;">&times;</button>
+    </div>
+
+    <div id="chatBody" style="flex: 1; padding: 18px; font-size: 14px; overflow-y: auto; background-color: #f8f9fa; scroll-behavior: smooth;">
+        <div style="padding: 12px; margin-bottom: 15px; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); border-left: 4px solid #2b3e50; color: #333; line-height: 1.5;">
+            👋 <b>Welcome to Academic Hub AI!</b><br>
+            Mujhse apne engineering subjects, coding assignments ya koi bhi theoretical doubt instant pooch lo.
+        </div>
+    </div>
+
+    <div style="padding: 15px; background-color: #ffffff; border-bottom-left-radius: 16px; border-bottom-right-radius: 16px; border-top: 1px solid #eee;">
+        <div style="display: flex; gap: 8px;">
+            <input type="text" id="aiInput" placeholder="Ask your academic doubt..." style="flex: 1; border-radius: 8px; font-size: 14px; padding: 10px 12px; border: 1px solid #ced4da; outline: none;">
+            <button id="sendBtn" style="background-color: #2b3e50; color: white; border: none; border-radius: 8px; padding: 0 18px; font-size: 14px; font-weight: bold; cursor: pointer;">Send</button>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>© 2026 Academic Resource Hub | Built By Malti Solanki</p>
+</footer>
+
+<script src="js/student.js"></script>
+
+<script>
+    // Component viewport appearance logic trigger toggles
+    document.getElementById("aiChatBtn").addEventListener("click", function() {
+        var chatBox = document.getElementById("aiChatWindow");
+        chatBox.classList.toggle("d-none");
+    });
+
+    document.getElementById("closeChat").addEventListener("click", function() {
+        document.getElementById("aiChatWindow").classList.add("d-none");
+    });
+
+    // Capture standard dispatch input streams
+    document.getElementById("sendBtn").addEventListener("click", executeQueryRouting);
+    document.getElementById("aiInput").addEventListener("keypress", function(e) {
+        if (e.key === "Enter") executeQueryRouting();
+    });
+
+    async function executeQueryRouting() {
+        const inputNode = document.getElementById("aiInput");
+        const textQuery = inputNode.value.trim();
+        if (!textQuery) return;
+
+        const chatContainer = document.getElementById("chatBody");
+
+        // Push immediate client interface chat node bubble
+        chatContainer.innerHTML += `
+            <div style="max-width: 85%; width: fit-content; margin-left: auto; margin-bottom: 10px; background-color: #34495e; color: white; padding: 10px; border-radius: 12px 12px 0px 12px; font-size: 13.5px; word-break: break-word; text-align: left;">
+                ${textQuery}
+            </div>`;
+
+        inputNode.value = "";
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+
+        // Display transaction execution status placeholder loader
+        const generatedTimestampId = "loader_" + Date.now();
+        chatContainer.innerHTML += `
+            <div id="${generatedTimestampId}" style="max-width: 85%; width: fit-content; margin-bottom: 10px; background-color: #ffffff; color: #666; padding: 10px; border-radius: 12px 12px 12px 0px; font-size: 13.5px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); border-left: 4px solid #ffc107; text-align: left;">
+                 Thinking... ⚡
+            </div>`;
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+
+        // 🔥 Fetch JWT token if stored under local storage / login session
+        const jwtToken = localStorage.getItem("token") || sessionStorage.getItem("token");
+
+        try {
+            const requestHeaders = {
+                'Content-Type': 'application/json',
+               // 'ngrok-skip-browser-warning': 'true' // 🔥 Hides the ngrok warning screen permanently
+            };
+
+            // If token exists, pass it directly to avoid Spring filter blockage
+            if (jwtToken) {
+                requestHeaders['Authorization'] = jwtToken.startsWith('Bearer ') ? jwtToken : 'Bearer ' + jwtToken;
+            }
+
+            // Target relative API endpoint gateway route mapping
+            const fetchPipelineResponse = await fetch('/api/ai/ask', {
+                method: 'POST',
+                headers: requestHeaders,
+                body: JSON.stringify({ prompt: textQuery })
+            });
+
+            const placeholderNodeInstance = document.getElementById(generatedTimestampId);
+
+            if (fetchPipelineResponse.ok) {
+                const streamResultPayload = await fetchPipelineResponse.json();
+
+                // Transformation of state container to terminal display template layout
+                placeholderNodeInstance.style.borderLeft = "4px solid #28a745";
+                placeholderNodeInstance.style.color = "#000000";
+                placeholderNodeInstance.innerHTML = `<b>AI Mentor:</b><br>${streamResultPayload.answer.replace(/\n/g, '<br>')}`;
+            } else {
+                try {
+                    const errorPayload = await fetchPipelineResponse.json();
+                    placeholderNodeInstance.innerHTML = `<b>Backend Error:</b> ${errorPayload.answer || 'Response validation failure.'}`;
+                } catch(e) {
+                    placeholderNodeInstance.innerHTML = `<b>Error 500:</b> Backend processing error or filter bypass failure.`;
+                }
+                placeholderNodeInstance.style.borderLeft = "4px solid #dc3545";
+                placeholderNodeInstance.style.color = "#dc3545";
+            }
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        } catch (networkExceptionError) {
+            console.error("Network communication exception:", networkExceptionError);
+            const errNode = document.getElementById(generatedTimestampId);
+            if(errNode) {
+                errNode.style.borderLeft = "4px solid #dc3545";
+                errNode.style.color = "#dc3545";
+                errNode.innerHTML = `<b>Error:</b> Unable to connect with backend network.`;
+            }
+        }
+    }
+</script>
+
+</body>
+</html>

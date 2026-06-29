@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Profile</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: "Outfit", sans-serif;
+            background: #f5f7fb;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .profile-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            width: 350px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .profile-avatar {
+            font-size: 50px;
+            margin-bottom: 15px;
+        }
+
+        .profile-info p {
+            margin: 8px 0;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 8px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            margin-top: 12px;
+            padding: 10px;
+            width: 100%;
+            background: #2c3e50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body onload="loadUserProfile()">
+
+<div class="profile-card">
+
+    <div class="profile-avatar">👩‍🎓</div>
+
+    <div class="profile-info">
+        <p><strong>Name:</strong> <span id="pName"></span></p>
+        <p><strong>Email:</strong> <span id="pEmail"></span></p>
+        <p><strong>Role:</strong> <span id="pRole"></span></p>
+        <p><strong>Branch:</strong> <span id="pBranch">Not set</span></p>
+        <p><strong>Semester:</strong> <span id="pSemester">Not set</span></p>
+        <p><strong>Year:</strong> <span id="pYear">Not set</span></p>
+    </div>
+
+    <input type="text" id="branch" placeholder="Enter Branch">
+    <input type="text" id="semester" placeholder="Enter Semester">
+    <input type="text" id="year" placeholder="Enter Year">
+
+    <button onclick="saveExtraProfile()">Save</button>
+
+    <button onclick="goBack()">⬅ Back to Dashboard</button>
+
+</div>
+
+<script src="js/student.js"></script>
+
+</body>
+</html>

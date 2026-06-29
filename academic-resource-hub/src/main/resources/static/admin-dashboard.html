@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="css/admin-dashboard.css">
+</head>
+
+<body>
+
+<div class="sidebar">
+    <h2>Admin</h2>
+    <button onclick="loadUsers()">User Info</button>
+    <button onclick="loadBranches()">Branches</button>
+    <button onclick="loadAllSemesters()">Semesters</button>
+    <button onclick="loadAllSubjects()">Subjects</button>
+    <button onclick="loadAllResources()">Resources</button>
+    <button onclick="gotodashboard()">Back To Dashboard</button>
+    <button onclick="logout()">Logout</button>
+</div>
+
+<div class="main" id="content">
+
+    <!-- TOP BAR -->
+    <div class="topbar">
+        <h2>Dashboard</h2>
+        <div class="admin-profile">Admin</div>
+    </div>
+
+    <!-- WELCOME SECTION -->
+    <div class="welcome-card">
+        <h1>Welcome Back, Admin</h1>
+        <p>Manage your academic resources efficiently from here.</p>
+    </div>
+
+    <!-- STATS SECTION -->
+    <div class="stats">
+
+        <div class="stat-card">
+            <h3>Manage Users</h3>
+            <p id="userCount">--</p>
+        </div>
+
+        <div class="stat-card">
+            <h3>Manage Branches</h3>
+            <p id="branchCount">--</p>
+        </div>
+
+        <div class="stat-card">
+            <h3>Manage Semesters</h3>
+            <p id="semesterCount">--</p>
+        </div>
+
+        <div class="stat-card">
+            <h3>Manage Resources</h3>
+            <p id="resourceCount">--</p>
+        </div>
+
+    </div>
+
+    <!-- DYNAMIC CONTENT AREA -->
+    <div class="card" id="dynamicContent">
+        <h3>Quick Info</h3>
+        <p>Click options from sidebar to manage data.</p>
+    </div>
+
+</div>
+
+<script src="js/admin.js"></script>
+
+</body>
+</html>
