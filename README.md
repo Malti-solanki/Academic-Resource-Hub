@@ -1,202 +1,125 @@
 📚 Academic Resource Hub
 
-A full-stack intelligent web application designed to provide students with a centralized platform to access academic resources like Notes, Previous Year Question Papers (PYQs), Syllabus, and an AI-powered learning assistant in a structured and organized way.
+A full-stack web application designed to provide students with a centralized platform to access academic resources like Notes, Previous Year Question Papers (PYQs), and Syllabus in a structured way.
 
 🚀 Features
-🔐 Core Features
 🔐 User Authentication (JWT Based)
 👨‍🎓 Role-Based Access Control (Admin & Student)
 📂 Upload Academic Resources (Admin)
 📥 Download & View Resources (Students)
 🏫 Branch & Semester-wise Organization
-📊 Interactive Dashboard for Easy Navigation
+📊 Dashboard for Easy Navigation
 🗂️ Subject-wise Resource Filtering
-⚡ Fast REST API Integration
+🤖 AI-powered Study Assistant (NEW)
+⚡ REST API Integration
 
-🤖 AI-Powered Features
-🧠 AI Study Assistant (Ask subject-related questions)
-📄 Smart Notes Summarization (Auto summary generation)
-🔍 Intelligent Search (Context-based results)
-📚 Personalized Study Recommendations
-💬 AI Chat Support for Doubt Solving
+🤖 AI Features
+🧠 Ask Doubts (AI Chat)
+📄 Notes Summarization
+🔍 Smart Search (Context-based)
+📚 Personalized Recommendations
 
 🛠️ Tech Stack
 Backend
 Java
 Spring Boot
 Spring Security
-JWT Authentication
+JWT
 MySQL
 Frontend
-HTML5
-CSS3
+HTML
+CSS
 JavaScript
 Bootstrap
-Axios / Fetch API
-
-🤖 AI Integration
-AI API (OpenAI / Custom LLM-ready integration)
-REST-based AI microservice/module
+Fetch API
+AI Module
+AI API (OpenAI / Custom LLM-ready)
 
 📁 Project Structure
-
 academic-resource-hub
 │
-├── backend (Spring Boot)
+├── backend
 │   ├── controller
 │   ├── service
 │   ├── repository
 │   ├── entity
-│   ├── dto
 │   ├── config
-│   └── security (JWT)
+│   └── security
 │
 ├── frontend
 │   ├── index.html
 │   ├── login.html
-│   ├── register.html
 │   ├── dashboard.html
-│   ├── css/
-│   ├── js/
-│   └── assets/
+│   ├── css
+│   ├── js
 │
 ├── ai-module
 │   ├── ai-controller
 │   ├── ai-service
-│   └── prompt-engine/
 │
 └── database
     └── schema.sql
-    
-⚙️ Installation & Setup
-1️⃣ Clone the Repository
+
+⚙️ Setup Instructions
+1️⃣ Clone Repo
 git clone https://github.com/your-username/academic-resource-hub.git
 cd academic-resource-hub
 
-2️⃣ Backend Setup (Spring Boot)
-Open project in IntelliJ / Eclipse
-Configure MySQL database in application.properties
+2️⃣ Backend Setup
+Open in IntelliJ / Eclipse
+Configure MySQL in application.properties
 spring.datasource.url=jdbc:mysql://localhost:3306/academic_hub
 spring.datasource.username=root
 spring.datasource.password=your_password
-
-spring.jpa.hibernate.ddl-auto=update
-spring.jpa.show-sql=true
-server.port=8080
-
-Run backend server:
-
+Run server:
 http://localhost:8080
+
 3️⃣ Frontend Setup
-Open frontend/ folder
-Run using Live Server OR open index.html
-
-🤖 AI Module Workflow
-User asks a question / selects AI feature
-Frontend sends request to backend AI API
-Backend processes request via AI service
-AI generates response (answer / summary / recommendation)
-Response displayed in UI in real-time
-
-📡 AI API Endpoints
-POST /api/ai/ask
-POST /api/ai/summarize
-POST /api/ai/recommend
-
-🔐 Authentication Flow (JWT)
-User registers or logs in
-Backend validates credentials
-JWT token is generated
-Token stored in browser (localStorage)
-Token sent in API headers for protected routes
-Authorization: Bearer <token>
-
-📡 API Endpoints
-🔐 Auth APIs
-POST /api/auth/register
-POST /api/auth/login
-
-👨‍💻 Admin APIs
-POST /api/admin/create
-POST /api/resource/upload
-DELETE /api/resource/{id}
-
-👨‍🎓 User APIs
-GET /api/resource/all
-GET /api/resource/{id}
+Open frontend/index.html
+Run using Live Server
 
 🤖 AI APIs
 POST /api/ai/ask
 POST /api/ai/summarize
 POST /api/ai/recommend
 
+🔐 Authentication Flow
+User Login/Register
+JWT Token Generate
+Stored in localStorage
+Sent in API Header
+Authorization: Bearer <token>
+
 👨‍💻 User Roles
-🛠️ Admin
+Admin
+Upload resources
+Manage content
 Manage users
-Upload/delete resources
-Manage branches, semesters, subjects
-Control content moderation
+Student
+Access materials
+Download notes
+Use AI assistant
 
-🎓 Student
-Register & login
-Browse study materials
-Download resources
-Use AI learning assistant
-
-🗄️ Database Design (Overview)
-Main Tables
+🗄️ Database
 User
 Role
 Branch
 Semester
 Subject
 Resource
-AI_Interaction_Log
-Relationships
-Branch → Semester → Subject → Resource
-User → Role
-User → AI_Interaction_Log
+AI Logs
 
-🧪 Testing
-API Testing using Postman
-Manual UI Testing
-JWT Authentication Testing
-Role-based Access Testing
-📸 Screenshots
-
-(Add screenshots here)
-
-🏠 Home Page
-🔐 Login Page
-📊 Dashboard
-📂 Resource Page
-🤖 AI Assistant UI
-🚧 Limitations
-No mobile application
-Basic UI design (can be improved with React)
-Limited advanced search system
-🔮 Future Enhancements
-📱 Mobile App (Android/iOS)
-🔍 Advanced AI Search Engine
-🤖 AI Chatbot with Voice Input
-💬 Real-time Student Chat System
-📊 Analytics Dashboard for Admin
-🧠 Smart Exam Preparation Mode
-🙌 Contribution
-
-Contributions are welcome!
-
-Fork the repository → Create branch → Commit changes → Open Pull Request
-
-📄 License
-
-This project is developed for educational purposes only.
-
+🔮 Future Improvements
+📱 Mobile App
+🤖 Advanced AI Chatbot
+💬 Real-time Chat System
+📊 Analytics Dashboard
 👤 Author
 
 Malti Solanki
-🎓 B.Tech CSE (2025–26)
-🏫 Jawaharlal Institute of Technology, Borawan
+B.Tech CSE (2025-26)
+Jawaharlal Institute of Technology, Borawan
 
 ⭐ Support
-If you like this project, don’t forget to star ⭐ the repository.
+
+If you like this project, give it a ⭐ on GitHub.
