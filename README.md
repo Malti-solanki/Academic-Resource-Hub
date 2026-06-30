@@ -1,45 +1,45 @@
-# 📚 Academic Resource Hub
+📚 Academic Resource Hub
 
-A full-stack web application designed to provide students with a **centralized platform** to access academic resources like Notes, Previous Year Question Papers (PYQs), and Syllabus in a structured and organized way.
+A full-stack intelligent web application designed to provide students with a centralized platform to access academic resources like Notes, Previous Year Question Papers (PYQs), Syllabus, and an AI-powered learning assistant in a structured and organized way.
 
----
+🚀 Features
+🔐 Core Features
+🔐 User Authentication (JWT Based)
+👨‍🎓 Role-Based Access Control (Admin & Student)
+📂 Upload Academic Resources (Admin)
+📥 Download & View Resources (Students)
+🏫 Branch & Semester-wise Organization
+📊 Interactive Dashboard for Easy Navigation
+🗂️ Subject-wise Resource Filtering
+⚡ Fast REST API Integration
 
-## 🚀 Features
+🤖 AI-Powered Features
+🧠 AI Study Assistant (Ask subject-related questions)
+📄 Smart Notes Summarization (Auto summary generation)
+🔍 Intelligent Search (Context-based results)
+📚 Personalized Study Recommendations
+💬 AI Chat Support for Doubt Solving
 
-* 🔐 **User Authentication (JWT Based)**
-* 👨‍🎓 **Role-Based Access (Admin & Student)**
-* 📂 **Upload Academic Resources (Admin)**
-* 📥 **Download & View Resources (Students)**
-* 🏫 **Branch & Semester-wise Organization**
-* 📊 **Dashboard for Easy Navigation**
-* 🗂️ **Subject-wise Resource Filtering**
-* ⚡ **Fast REST API Integration**
+🛠️ Tech Stack
+Backend
+Java
+Spring Boot
+Spring Security
+JWT Authentication
+MySQL
+Frontend
+HTML5
+CSS3
+JavaScript
+Bootstrap
+Axios / Fetch API
 
----
+🤖 AI Integration
+AI API (OpenAI / Custom LLM-ready integration)
+REST-based AI microservice/module
 
-## 🛠️ Tech Stack
+📁 Project Structure
 
-### Backend
-
-* Java
-* Spring Boot
-* Spring Security
-* JWT Authentication
-* MySQL
-
-### Frontend
-
-* HTML
-* CSS
-* JavaScript
-* Bootstrap
-* Axios / Fetch API
-
----
-
-## 📁 Project Structure
-
-```
 academic-resource-hub
 │
 ├── backend (Spring Boot)
@@ -60,178 +60,143 @@ academic-resource-hub
 │   ├── js/
 │   └── assets/
 │
+├── ai-module
+│   ├── ai-controller
+│   ├── ai-service
+│   └── prompt-engine/
+│
 └── database
     └── schema.sql
-```
-
----
-
-## ⚙️ Installation & Setup
-
-### 1️⃣ Clone the Repository
-
-```
+    
+⚙️ Installation & Setup
+1️⃣ Clone the Repository
 git clone https://github.com/your-username/academic-resource-hub.git
 cd academic-resource-hub
-```
 
-### 2️⃣ Backend Setup (Spring Boot)
-
-* Open project in IntelliJ / Eclipse
-* Configure MySQL database in `application.properties`
-
-Example:
-
-```
+2️⃣ Backend Setup (Spring Boot)
+Open project in IntelliJ / Eclipse
+Configure MySQL database in application.properties
 spring.datasource.url=jdbc:mysql://localhost:3306/academic_hub
 spring.datasource.username=root
 spring.datasource.password=your_password
-```
 
-* Run the Spring Boot application
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+server.port=8080
 
-Server will start at:
+Run backend server:
 
-```
 http://localhost:8080
-```
+3️⃣ Frontend Setup
+Open frontend/ folder
+Run using Live Server OR open index.html
 
----
+🤖 AI Module Workflow
+User asks a question / selects AI feature
+Frontend sends request to backend AI API
+Backend processes request via AI service
+AI generates response (answer / summary / recommendation)
+Response displayed in UI in real-time
 
-### 3️⃣ Frontend Setup
+📡 AI API Endpoints
+POST /api/ai/ask
+POST /api/ai/summarize
+POST /api/ai/recommend
 
-* Open frontend folder
-* Run using Live Server OR open `index.html`
-
----
-
-## 🔐 Authentication Flow (JWT)
-
-1. User registers or logs in
-2. Backend validates credentials
-3. JWT token is generated
-4. Token is stored in browser (localStorage)
-5. Token is sent in API headers for protected routes
-
-Example Header:
-
-```
+🔐 Authentication Flow (JWT)
+User registers or logs in
+Backend validates credentials
+JWT token is generated
+Token stored in browser (localStorage)
+Token sent in API headers for protected routes
 Authorization: Bearer <token>
-```
 
----
+📡 API Endpoints
+🔐 Auth APIs
+POST /api/auth/register
+POST /api/auth/login
 
-## 📡 API Endpoints
+👨‍💻 Admin APIs
+POST /api/admin/create
+POST /api/resource/upload
+DELETE /api/resource/{id}
 
-### Auth APIs
+👨‍🎓 User APIs
+GET /api/resource/all
+GET /api/resource/{id}
 
-* POST `/api/auth/register`
-* POST `/api/auth/login`
+🤖 AI APIs
+POST /api/ai/ask
+POST /api/ai/summarize
+POST /api/ai/recommend
 
-### Admin APIs
+👨‍💻 User Roles
+🛠️ Admin
+Manage users
+Upload/delete resources
+Manage branches, semesters, subjects
+Control content moderation
 
-* POST `/api/admin/create`
-* POST `/api/resource/upload`
-* DELETE `/api/resource/{id}`
+🎓 Student
+Register & login
+Browse study materials
+Download resources
+Use AI learning assistant
 
-### User APIs
+🗄️ Database Design (Overview)
+Main Tables
+User
+Role
+Branch
+Semester
+Subject
+Resource
+AI_Interaction_Log
+Relationships
+Branch → Semester → Subject → Resource
+User → Role
+User → AI_Interaction_Log
 
-* GET `/api/resource/all`
-* GET `/api/resource/{id}`
+🧪 Testing
+API Testing using Postman
+Manual UI Testing
+JWT Authentication Testing
+Role-based Access Testing
+📸 Screenshots
 
----
+(Add screenshots here)
 
-## 👨‍💻 User Roles
+🏠 Home Page
+🔐 Login Page
+📊 Dashboard
+📂 Resource Page
+🤖 AI Assistant UI
+🚧 Limitations
+No mobile application
+Basic UI design (can be improved with React)
+Limited advanced search system
+🔮 Future Enhancements
+📱 Mobile App (Android/iOS)
+🔍 Advanced AI Search Engine
+🤖 AI Chatbot with Voice Input
+💬 Real-time Student Chat System
+📊 Analytics Dashboard for Admin
+🧠 Smart Exam Preparation Mode
+🙌 Contribution
 
-### Admin
+Contributions are welcome!
 
-* Manage users
-* Upload/delete resources
-* Manage branches, semesters, subjects
+Fork the repository → Create branch → Commit changes → Open Pull Request
 
-### Student
+📄 License
 
-* Register & login
-* Browse resources
-* Download study materials
+This project is developed for educational purposes only.
 
----
+👤 Author
 
-## 🗄️ Database Design (Overview)
+Malti Solanki
+🎓 B.Tech CSE (2025–26)
+🏫 Jawaharlal Institute of Technology, Borawan
 
-Main Tables:
-
-* User
-* Role
-* Branch
-* Semester
-* Subject
-* Resource
-
-Relationships:
-
-* Branch → Semester → Subject → Resource
-* User → Role
-
----
-
-## 🧪 Testing
-
-* API Testing using Postman
-* Manual UI Testing
-* Authentication & Authorization testing
-
----
-
-## 📸 Screenshots
-
-(Add your screenshots here)
-
-* Home Page
-* Login Page
-* Dashboard
-* Resource Page
-
----
-
-## 🚧 Limitations
-
-* No mobile application
-* Basic UI design
-* Limited search functionality
-
----
-
-## 🔮 Future Enhancements
-
-* 📱 Mobile App (Android/iOS)
-* 🔍 Advanced Search & Filters
-* 🤖 AI-based Recommendation System
-* 💬 Chat System for Students
-* 📊 Analytics Dashboard
-
----
-
-## 🙌 Contribution
-
-Contributions are welcome! Feel free to fork the repository and submit a pull request.
-
----
-
-## 📄 License
-
-This project is developed for educational purposes.
-
----
-
-## 👤 Author
-
-**Malti Solanki**
-B.Tech CSE (2025-26)
-Jawaharlal Institute of Technology, Borawan
-
----
-
-## ⭐ Support
-
-If you like this project, give it a ⭐ on GitHub!
+⭐ Support
+If you like this project, don’t forget to star ⭐ the repository.
